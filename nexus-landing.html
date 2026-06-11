@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nexus Tech Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060912;
+  --surface:#0c1120;
+  --surface2:#111827;
+  --accent:#38bdf8;
+  --accent2:#818cf8;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --border:#1e2d40;
+  --gold:#fbbf24;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6}
+
+/* TOPBAR */
+.topbar{
+  background:linear-gradient(90deg,#0ea5e9,#6366f1);
+  padding:10px 20px;
+  text-align:center;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.4px;
+  position:sticky;top:0;z-index:100;
+}
+
+/* HERO */
+.hero{
+  padding:90px 20px 70px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%,#0ea5e920,transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-block;
+  background:#0ea5e915;
+  border:1px solid #38bdf840;
+  color:var(--accent);
+  font-size:12px;font-weight:600;letter-spacing:1px;
+  padding:6px 16px;border-radius:100px;
+  margin-bottom:24px;text-transform:uppercase;
+}
+.hero h1{
+  font-size:clamp(2.4rem,7vw,5rem);
+  font-weight:900;
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:16px;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#38bdf8,#818cf8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero p{font-size:18px;color:var(--muted);max-width:500px;margin:0 auto 32px;}
+
+/* COUNTDOWN */
+.countdown-box{
+  display:inline-flex;gap:12px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px 28px;
+  margin:0 auto 36px;
+}
+.cd-unit{text-align:center}
+.cd-num{
+  font-size:2.4rem;font-weight:900;
+  background:linear-gradient(135deg,#38bdf8,#818cf8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  display:block;line-height:1;
+}
+.cd-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+.cd-sep{font-size:2rem;color:var(--border);align-self:center;margin-top:-8px}
+
+.btn-primary{
+  display:inline-block;
+  background:linear-gradient(135deg,#0ea5e9,#6366f1);
+  color:#fff;
+  padding:15px 36px;
+  border-radius:12px;
+  font-size:16px;font-weight:700;
+  text-decoration:none;
+  transition:opacity .2s,transform .15s;
+  letter-spacing:.3px;
+}
+.btn-primary:hover{opacity:.9;transform:translateY(-2px)}
+.btn-outline{
+  display:inline-block;
+  border:1.5px solid var(--accent);
+  color:var(--accent);
+  padding:11px 24px;
+  border-radius:10px;
+  font-size:14px;font-weight:600;
+  text-decoration:none;
+  transition:background .2s;
+  width:100%;text-align:center;margin-top:12px;
+}
+.btn-outline:hover{background:#38bdf810}
+
+/* TRUST STRIP */
+.trust{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:32px;
+  padding:28px 20px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);font-weight:500}
+.trust-item svg{width:18px;height:18px;stroke:var(--accent);fill:none}
+
+/* PRODUCTS */
+.section{padding:60px 20px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.section-header p{color:var(--muted);font-size:15px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:20px;
+  max-width:1200px;margin:0 auto;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  display:flex;flex-direction:column;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#38bdf840;
+  box-shadow:0 16px 40px #000a;
+}
+.card-img{
+  width:100%;height:180px;
+  background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:48px;color:var(--muted);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
+.card-badge{
+  display:inline-block;
+  background:#0ea5e915;border:1px solid #0ea5e930;
+  color:var(--accent);font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:100px;letter-spacing:.5px;
+  align-self:flex-start;
+}
+.card h3{font-size:14px;font-weight:600;line-height:1.4;flex:1}
+.stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.price{font-size:20px;font-weight:800;color:var(--text)}
+.price-old{font-size:13px;color:var(--muted);text-decoration:line-through}
+
+/* TESTIMONIALS */
+.testimonials{padding:60px 0;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.testi-header{text-align:center;margin-bottom:40px;padding:0 20px}
+.testi-header h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.track-wrap{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)}
+.track{display:flex;gap:16px;animation:slide 28s linear infinite;width:max-content}
+.track:hover{animation-play-state:paused}
+.review-card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px 22px;
+  min-width:280px;max-width:280px;
+}
+.reviewer{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#0ea5e9,#6366f1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.reviewer-name{font-size:14px;font-weight:600}
+.reviewer-date{font-size:12px;color:var(--muted)}
+.review-text{font-size:13px;color:#cbd5e1;line-height:1.6}
+.review-stars{color:var(--gold);font-size:13px;margin-bottom:8px}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* FAQ */
+.faq{padding:60px 20px;max-width:740px;margin:0 auto}
+.faq h2{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-1px;margin-bottom:36px;text-align:center}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;background:var(--surface)}
+.faq-q{
+  width:100%;background:none;border:none;color:var(--text);
+  padding:18px 20px;font-size:15px;font-weight:600;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;text-align:left;gap:16px;
+}
+.faq-q:hover{background:var(--surface2)}
+.faq-icon{width:20px;height:20px;flex-shrink:0;stroke:var(--accent);fill:none;transition:transform .25s}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .3s ease;
+  font-size:14px;color:var(--muted);
+}
+.faq-a-inner{padding:0 20px 18px}
+.faq-item.open .faq-a{max-height:200px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;right:20px;bottom:20px;
+  background:#25D366;color:#fff;
+  display:flex;align-items:center;gap:8px;
+  padding:13px 20px;border-radius:100px;
+  font-weight:700;font-size:14px;text-decoration:none;
+  box-shadow:0 4px 20px #25D36660;
+  z-index:99;transition:transform .2s;
+}
+.whatsapp:hover{transform:scale(1.05)}
+.whatsapp svg{width:20px;height:20px;fill:#fff}
+
+/* FOOTER */
+footer{
+  padding:40px 20px;text-align:center;
+  border-top:1px solid var(--border);
+  color:var(--muted);font-size:13px;
+}
+footer a{color:var(--accent);text-decoration:none}
+
+@media(max-width:600px){
+  .countdown-box{gap:8px;padding:16px 16px}
+  .cd-num{font-size:1.8rem}
+  .trust{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">🔥 OFERTA LIMITADA — ENVÍOS A TODO EL PAÍS 🚚</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">⚡ Tienda oficial</div>
+  <h1>NEXUS<br><span>TECH STORE</span></h1>
+  <p>Tecnología de calidad que mejora tu día a día</p>
+
+  <div class="countdown-box">
+    <div class="cd-unit"><span class="cd-num" id="cd-h">00</span><div class="cd-label">Horas</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><span class="cd-num" id="cd-m">00</span><div class="cd-label">Min</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-unit"><span class="cd-num" id="cd-s">00</span><div class="cd-label">Seg</div></div>
+  </div>
+  <br>
+  <a href="#productos" class="btn-primary">Ver todos los productos →</a>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
+    Envíos a todo Argentina
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Compra segura
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Atención personalizada
+  </div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Garantía en todos los productos
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="section" id="productos">
+  <div class="section-header">
+    <h2>Nuestros Productos</h2>
+    <p>Selección premium de tecnología y gadgets</p>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-img">🪒</div>
+      <div class="card-body">
+        <span class="card-badge">MÁS VENDIDO</span>
+        <h3>Mini afeitadora + Mini depiladora nasal</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$29.990</span>
+          <span class="price-old">$42.000</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/mini-afeitadora-mini-depiladora-nasal/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">⌚</div>
+      <div class="card-body">
+        <span class="card-badge">PREMIUM</span>
+        <h3>Apple Watch</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$61.776</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/apple-watch/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">⌚</div>
+      <div class="card-body">
+        <span class="card-badge">OFERTA</span>
+        <h3>Reloj Smartwatch A30 + 3 Mallas</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$36.750</span>
+          <span class="price-old">$50.000</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/reloj-smartwatch-a30-3-mallas/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">⌚</div>
+      <div class="card-body">
+        <span class="card-badge">NUEVO</span>
+        <h3>Smartwatch ZL138 Negro</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$69.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/smartwatch-zl138-negro-mejor-que-zl02-aac9i/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">💧</div>
+      <div class="card-body">
+        <span class="card-badge">DESTACADO</span>
+        <h3>Humidificador aromatizante llama simulada a pila</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$69.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/humidificador-aromatizante-llama-simulada-a-pila/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🎧</div>
+      <div class="card-body">
+        <span class="card-badge">OFERTA</span>
+        <h3>Auriculares Bluetooth 895B</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$14.999</span>
+          <span class="price-old">$22.000</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/auriculares-bluetooth-895b/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🪐</div>
+      <div class="card-body">
+        <span class="card-badge">NUEVO</span>
+        <h3>Lámpara humidificador Saturno</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$22.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/lampara-humidificador-saturno/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">💡</div>
+      <div class="card-body">
+        <span class="card-badge">DESTACADO</span>
+        <h3>Lámpara c/ carga inalámbrica - Negro</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$19.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/lampara-c-carga-inalambrica-modx-000f-negro-1jidx/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">⌚</div>
+      <div class="card-body">
+        <span class="card-badge">NUEVO</span>
+        <h3>Smartwatch Z49</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$26.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/smartwatch-z49-dupli/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🔊</div>
+      <div class="card-body">
+        <span class="card-badge">OFERTA</span>
+        <h3>Parlante Mini G63 4 en 1</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$26.999</span>
+          <span class="price-old">$38.000</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/parlante-mini-g63-4-en-1/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🚀</div>
+      <div class="card-body">
+        <span class="card-badge">MÁS VENDIDO</span>
+        <h3>Proyector astronauta sentado - blanco guitarra</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$26.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/proyector-astronauta-sentado-blanco-guitarra/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🎧</div>
+      <div class="card-body">
+        <span class="card-badge">PREMIUM</span>
+        <h3>Headphone P880 RGB</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$49.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/headphone-p880-rgb/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🪼</div>
+      <div class="card-body">
+        <span class="card-badge">DESTACADO</span>
+        <h3>Lámpara LED medusa con parlante</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$69.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/lampara-led-medusa-con-parlante/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">⌚</div>
+      <div class="card-body">
+        <span class="card-badge">NUEVO</span>
+        <h3>Smartwatch ZL136 Negro</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$75.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/smartwatch-zl136-negro-mejor-que-zl02-t7x9k/">Comprar ahora</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img">🔊</div>
+      <div class="card-body">
+        <span class="card-badge">PREMIUM</span>
+        <h3>Parlante 8" GTS-1802 c/ micrófono</h3>
+        <div class="stars">★★★★★</div>
+        <div>
+          <span class="price">$79.999</span>
+        </div>
+        <a class="btn-outline" href="https://nexustechstoore.mitiendanube.com/productos/parlante-8-gts-1802-c-microfono/">Comprar ahora</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testi-header">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <p style="color:#94a3b8;font-size:15px">+500 clientes satisfechos en todo el país</p>
+  </div>
+  <div class="track-wrap">
+    <div class="track" id="track">
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré el Smartwatch ZL138 y quedé impresionado. Llegó en 3 días y funciona perfecto. Muy buena calidad para el precio."</p>
+        <div class="reviewer">
+          <div class="avatar">ML</div>
+          <div><div class="reviewer-name">Matías L.</div><div class="reviewer-date">Buenos Aires · hace 2 días</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El proyector astronauta es hermoso, lo compré para el cuarto de mi hijo y quedó re lindo. Envío muy rápido."</p>
+        <div class="reviewer">
+          <div class="avatar">VA</div>
+          <div><div class="reviewer-name">Valeria A.</div><div class="reviewer-date">Córdoba · hace 5 días</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Tercera compra en Nexus. Siempre excelente atención y los productos llegan tal cual se muestran. 100% recomendados."</p>
+        <div class="reviewer">
+          <div class="avatar">RG</div>
+          <div><div class="reviewer-name">Rodrigo G.</div><div class="reviewer-date">Mendoza · hace 1 semana</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré la lámpara medusa y es una pasada. Ideal para regalo. Me lo enviaron antes de lo esperado, re feliz."</p>
+        <div class="reviewer">
+          <div class="avatar">SC</div>
+          <div><div class="reviewer-name">Sofía C.</div><div class="reviewer-date">Rosario · hace 4 días</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Los auriculares Bluetooth suenan muy bien, se conectan rápido y la batería dura mucho. Por ese precio son una ganga."</p>
+        <div class="reviewer">
+          <div class="avatar">FM</div>
+          <div><div class="reviewer-name">Federico M.</div><div class="reviewer-date">Tucumán · hace 3 días</div></div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El humidificador llama simulada es divino, lo uso en el escritorio mientras trabajo. Muy buena onda la tienda."</p>
+        <div class="reviewer">
+          <div class="avatar">LP</div>
+          <div><div class="reviewer-name">Lucía P.</div><div class="reviewer-date">Santa Fe · hace 6 días</div></div>
+        </div>
+      </div>
+
+      <!-- duplicado para loop infinito -->
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré el Smartwatch ZL138 y quedé impresionado. Llegó en 3 días y funciona perfecto. Muy buena calidad para el precio."</p>
+        <div class="reviewer">
+          <div class="avatar">ML</div>
+          <div><div class="reviewer-name">Matías L.</div><div class="reviewer-date">Buenos Aires · hace 2 días</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El proyector astronauta es hermoso, lo compré para el cuarto de mi hijo y quedó re lindo. Envío muy rápido."</p>
+        <div class="reviewer">
+          <div class="avatar">VA</div>
+          <div><div class="reviewer-name">Valeria A.</div><div class="reviewer-date">Córdoba · hace 5 días</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Tercera compra en Nexus. Siempre excelente atención y los productos llegan tal cual se muestran. 100% recomendados."</p>
+        <div class="reviewer">
+          <div class="avatar">RG</div>
+          <div><div class="reviewer-name">Rodrigo G.</div><div class="reviewer-date">Mendoza · hace 1 semana</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Compré la lámpara medusa y es una pasada. Ideal para regalo. Me lo enviaron antes de lo esperado, re feliz."</p>
+        <div class="reviewer">
+          <div class="avatar">SC</div>
+          <div><div class="reviewer-name">Sofía C.</div><div class="reviewer-date">Rosario · hace 4 días</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Los auriculares Bluetooth suenan muy bien, se conectan rápido y la batería dura mucho. Por ese precio son una ganga."</p>
+        <div class="reviewer">
+          <div class="avatar">FM</div>
+          <div><div class="reviewer-name">Federico M.</div><div class="reviewer-date">Tucumán · hace 3 días</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"El humidificador llama simulada es divino, lo uso en el escritorio mientras trabajo. Muy buena onda la tienda."</p>
+        <div class="reviewer">
+          <div class="avatar">LP</div>
+          <div><div class="reviewer-name">Lucía P.</div><div class="reviewer-date">Santa Fe · hace 6 días</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <h2>Preguntas frecuentes</h2>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      ¿Hacen envíos a todo Argentina?
+      <svg viewBox="0 0 24 24" stroke-width="2" class="faq-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Sí, enviamos a todo el país a través de los servicios de correo habilitados. El tiempo de entrega varía según la zona, generalmente entre 3 y 7 días hábiles.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      ¿Cómo puedo pagar?
+      <svg viewBox="0 0 24 24" stroke-width="2" class="faq-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Aceptamos todos los medios disponibles en Mercado Pago: tarjeta de crédito, débito, transferencia bancaria y pago en efectivo. Compra 100% segura.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      ¿Los productos tienen garantía?
+      <svg viewBox="0 0 24 24" stroke-width="2" class="faq-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Sí, todos nuestros productos cuentan con garantía del fabricante. Ante cualquier problema, nos ponemos en contacto para resolverlo rápidamente.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      ¿Qué hago si mi pedido llega dañado?
+      <svg viewBox="0 0 24 24" stroke-width="2" class="faq-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Contactanos por WhatsApp dentro de las 48 hs de recibido el producto con foto o video del problema. Gestionamos el cambio o reembolso sin complicaciones.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">
+      ¿Puedo hacer seguimiento de mi pedido?
+      <svg viewBox="0 0 24 24" stroke-width="2" class="faq-icon"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">Sí, una vez despachado el pedido te enviamos el número de seguimiento por correo o WhatsApp para que puedas rastrearlo en tiempo real.</div></div>
+  </div>
+
+</section>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/5492614000000" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  Escribinos
+</a>
+
+<footer>
+  <p>© 2025 Nexus Tech Store · <a href="https://nexustechstoore.mitiendanube.com">nexustechstoore.mitiendanube.com</a></p>
+</footer>
+
+<script>
+// COUNTDOWN - se reinicia cada 24hs para mantener escasez
+function getTarget(){
+  const key='nts_cd_target';
+  let t=localStorage.getItem(key);
+  if(!t||new Date(t)<new Date()){
+    const n=new Date();
+    n.setHours(n.getHours()+24);
+    localStorage.setItem(key,n.toISOString());
+    return n;
+  }
+  return new Date(t);
+}
+const target=getTarget();
+setInterval(()=>{
+  const diff=target-new Date();
+  if(diff<=0){localStorage.removeItem('nts_cd_target');location.reload();return}
+  const h=String(Math.floor(diff/1000/60/60)).padStart(2,'0');
+  const m=String(Math.floor((diff/1000/60)%60)).padStart(2,'0');
+  const s=String(Math.floor((diff/1000)%60)).padStart(2,'0');
+  document.getElementById('cd-h').textContent=h;
+  document.getElementById('cd-m').textContent=m;
+  document.getElementById('cd-s').textContent=s;
+},1000);
+
+// FAQ
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+</body>
+</html>
